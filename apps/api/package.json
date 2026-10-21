@@ -1,0 +1,20 @@
+{
+  "name": "@ecogrid/api",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node --watch src/server.ts",
+    "start": "node src/server.ts",
+    "db:seed": "node src/seed.ts"
+  },
+  "dependencies": {
+    "@ecogrid/contracts": "0.1.0",
+    "@ecogrid/simulator": "0.1.0",
+    "@ecogrid/analytics": "0.1.0",
+    "@fastify/helmet": "^13.0.0",
+    "@fastify/rate-limit": "^10.0.0",
+    "@fastify/swagger": "^9.0.0",
+    "fastify": "^5.0.0"
+  }
+}
