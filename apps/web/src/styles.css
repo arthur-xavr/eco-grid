@@ -1,0 +1,13 @@
+@import "tailwindcss";
+@theme {
+  --color-primary: #166534;
+  --color-success-soft: #ecfdf5;
+  --color-ink: #172b24;
+  --color-muted: #61736a;
+  --color-surface: #f5f8f6;
+  --font-sans: "Segoe UI", system-ui, sans-serif;
+}
+@layer base {
+  body { @apply m-0 bg-surface font-sans text-ink; }
+  button, select, input { @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-primary; }
+}

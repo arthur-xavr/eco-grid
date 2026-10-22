@@ -1,173 +1,75 @@
-# ⚡ EcoGrid — Plataforma Inteligente de Monitoramento Energético
+# Eco Grid — PIE ADS · 4º período
 
-![EcoGrid Banner](https://img.shields.io/badge/EcoGrid-Gestão%20Energética-22c55e?style=for-the-badge&logo=lightning&logoColor=white)
-![Status](https://img.shields.io/badge/Status-MVP%20Ativo-22c55e?style=for-the-badge)
-![Curso](https://img.shields.io/badge/Curso-ADS-2dd4bf?style=for-the-badge)
-![GitHub Pages](https://img.shields.io/badge/GitHub%20Pages-Online-38bdf8?style=for-the-badge)
+Monitoramento energético acadêmico **com dados simulados**.
 
-> Plataforma SaaS corporativa para monitoramento e gestão inteligente de energia elétrica.  
-> Dashboards em tempo real, automação IoT e relatórios de eficiência energética.
+Este repositório contém dois artefatos:
+- **Protótipo anterior:** index.html, css/ e js/, preservados nesta evolução.
+  Os gráficos usam arrays fixos. Rótulos "ao vivo" e percentuais são ilustrativos.
+- **Sistema deste semestre:** apps/ e packages/, com API, SQLite e tela inicial
+  de integração. Dashboard completo e análises serão contribuídos pelos colegas.
 
----
+HubControl, sensores, ESP32, MQTT, automação e IA são visão futura.
+Nenhuma economia energética real foi medida por esta base.
 
-## 🌐 Demo ao vivo
+## Executar a base deste semestre
 
-**👉 [Acesse o EcoGrid aqui](https://readdy.cc/preview/abcc31fe-7527-4a8d-a38d-ad01b46c9a96/10596731/)**
+Requisito: Node.js 24 (inclui SQLite embutido; pode emitir aviso experimental).
 
----
-
-## 📋 Sobre o Projeto
-
-O **EcoGrid** é um Projeto Integrador desenvolvido no curso de **Análise e Desenvolvimento de Sistemas**, com o objetivo de criar uma plataforma web funcional para monitoramento e gestão energética corporativa.
-
-### Problema que resolve
-- ❌ Alto desperdício energético por falta de controle
-- ❌ Ausência de monitoramento centralizado
-- ❌ Tomada de decisão sem dados reais
-- ❌ Contas de energia crescendo sem mecanismo de contenção
-
-### Solução proposta
-- ✅ Dashboard analítico em tempo real
-- ✅ KPIs de consumo, economia e eficiência
-- ✅ Gestão centralizada de dispositivos
-- ✅ Alertas automáticos de anomalias
-- ✅ Relatórios e comparativos históricos
-
----
-
-## 🗂️ Estrutura do Projeto
-
-```
-ecogrid/
-├── index.html          # Landing page + Dashboard preview
-├── css/
-│   └── style.css       # Estilos completos (dark theme, responsivo)
-├── js/
-│   └── main.js         # Lógica, gráficos e interatividade
-├── assets/             # Imagens e ícones (se houver)
-├── README.md           # Este arquivo
-└── .gitignore
+```sh
+git clone https://github.com/castrokenedy/eco-grid.git
+cd eco-grid
+git switch codex/bootstrap
+npm ci
+npm run db:seed
+npm run dev
 ```
 
----
+Abra http://localhost:5173. API: http://127.0.0.1:3001/api/v1/health.
+Contrato OpenAPI: http://127.0.0.1:3001/api/openapi.json.
+Se a branch inicial já tiver sido mesclada, use main.
+A API é local e sem autenticação; não foi publicada como serviço.
 
-## 🚀 Como rodar localmente
+A seed cria 2 ambientes, 4 equipamentos e 672 leituras horárias, com semente 42,
+de **12/10/2026 00:00 UTC a 19/10/2026 00:00 UTC (fim exclusivo)**.
+Repetir a seed não duplica os registros.
+Sem executar a seed, a API sobe vazia e a tela informa ausência de dados.
+Tarifa padrão fictícia: R$ 0,80/kWh, ajustável na consulta.
+Filtros aceitam horas completas e no máximo 31 dias.
+O banco local é apps/api/data/ecogrid.sqlite e fica fora do Git.
 
-### Opção 1 — Abrir direto no navegador
-1. Faça o clone do repositório:
-```bash
-git clone https://github.com/SEU-USUARIO/ecogrid.git
-cd ecogrid
-```
-2. Abra o arquivo `index.html` no seu navegador.
-
-### Opção 2 — Usar extensão Live Server (VS Code)
-1. Instale a extensão **Live Server** no VS Code
-2. Clique com botão direito em `index.html` → **Open with Live Server**
-
-### Opção 3 — Python HTTP Server
-```bash
-python -m http.server 8080
-# Acesse: http://localhost:8080
+```sh
+npm run check
+npm test
+npm run build
 ```
 
----
+O build gera a interface em apps/web/dist. Uma implantação futura precisa
+configurar proxy para a API; GitHub Pages sozinho não executa Node/SQLite.
+O protótipo estático na raiz continua independente desse build.
 
-## 🌐 Publicar no GitHub Pages
+## Divisão da equipe
 
-1. Faça push do projeto para um repositório público no GitHub
-2. Vá em **Settings → Pages**
-3. Em **Branch**, selecione `main` e pasta `/` (root)
-4. Clique em **Save**
-5. Aguarde alguns minutos — o link ficará disponível em:  
-   `https://SEU-USUARIO.github.io/NOME-DO-REPOSITORIO/`
+| Parte | Entrega | Estado desta branch |
+|---|---|---|
+| 1 | API, banco, simulação e contratos | Base inicial |
+| 2 | Dashboard e gráficos | Tela de integração e espaço para contribuição |
+| 3 | Análises, alertas e CSV | Interface definida; rotas retornam 501 |
 
----
+Nomes e distribuição pessoal: confirmar com o grupo.
+Detalhes: [plano e critérios de aceite](docs/semester-plan.md),
+[contribuição](CONTRIBUTING.md), [Parte 3](packages/analytics/README.md).
 
-## 🛠️ Tecnologias Utilizadas
+## Estrutura
 
-| Camada | Tecnologia | Finalidade |
-|--------|-----------|------------|
-| Frontend | HTML5 + CSS3 | Estrutura e estilização |
-| Interatividade | JavaScript (ES6+) | Lógica e animações |
-| Gráficos | Chart.js 4 | Dashboards analíticos |
-| Tipografia | Google Fonts (Syne + DM Sans) | Design moderno |
-| Deploy | GitHub Pages | Hospedagem gratuita |
-| Banco (futuro) | PostgreSQL + Supabase | Persistência de dados |
-| Backend (futuro) | Node.js + Express | API RESTful |
-| IoT (futuro) | MQTT + ESP32 | Integração com hardware |
+```text
+index.html, css/, js/      protótipo público preservado
+apps/api/                 Fastify, SQLite, migrações e testes
+apps/web/                 React + Vite, tela inicial
+packages/contracts/       tipos, schemas e exemplos comuns
+packages/simulator/       gerador determinístico
+packages/analytics/       contrato a implementar pelo integrante 3
+docs/                     diagnóstico, arquitetura e escopo
+```
 
----
-
-## 📊 Funcionalidades da Interface
-
-### Landing Page
-- [x] Hero section com animações
-- [x] Seção de problema
-- [x] Seção de solução com fluxograma interativo
-- [x] Seção de benefícios
-- [x] Preview interativo do dashboard
-- [x] Stack tecnológico
-- [x] CTA final
-- [x] Responsivo (mobile, tablet, desktop)
-
-### Dashboard Preview
-- [x] KPIs: consumo atual, economia, dispositivos, alertas
-- [x] Gráfico de consumo das últimas 24h
-- [x] Gráfico de distribuição por setor (Doughnut)
-- [x] Tab de Analytics com barras + linha
-- [x] Tab de Gestão de Dispositivos (tabela)
-- [x] Contadores animados
-- [x] Sidebar de navegação simulada
-
----
-
-## 🗺️ Roadmap
-
-| Fase | Status | Descrição |
-|------|--------|-----------|
-| Fase 1 — MVP | ✅ Concluída | Protótipos, dashboard, landing page, documentação |
-| Fase 2 — Backend | 🔜 Planejada | API REST, banco de dados, autenticação |
-| Fase 3 — IoT | 🔜 Planejada | Integração ESP32, MQTT, sensores reais |
-| Fase 4 — Automação | 🔜 Planejada | Regras automáticas, alertas por e-mail/push |
-| Fase 5 — SaaS | 🔜 Planejada | Multitenancy, expansão HubControl |
-
----
-
-## 👥 Equipe
-
-| Nome | Função |
-|------|--------|
-| Arhur Santos | Desenvolvimento Frontend |
-| Ketleen de Souza | Documentação Técnica |
-| Kenedy Anderson Souza de Castro | Design e Prototipação |
-| Kenedy Anderson Souza de Castro | Banco de Dados e Arquitetura |
-
----
-
-## 📄 Documentação
-
-- 📋 [Documentação Técnica (PDF)](./docs/eco_grid_documentacao_tecnica.pdf)
-- 🎨 [Protótipos (Readdy)](https://readdy.cc/preview/abcc31fe-7527-4a8d-a38d-ad01b46c9a96/10596731/)
-
----
-
-## 🎓 Informações Acadêmicas
-
-- **Curso:** Análise e Desenvolvimento de Sistemas
-- **Disciplina:** Projeto Integrador de Extensão (PIE)
-- - **Professor:** Maykel Deolindo
-- **Instituição:** Universidade Católica Salesiana 
-- **Ano:** 2026
-
----
-
-## 📝 Licença
-
-Este projeto foi desenvolvido para fins acadêmicos como parte do Projeto Integrador de Extensão da Universidade Católita Salesiana .
-
----
-
-<p align="center">
-  Desenvolvido com ⚡ pela equipe <strong>EcoGrid</strong>
-</p>
+Os dados são fictícios. Estimativas de custo não equivalem a faturas.
+O escopo técnico atual está documentado; não há integração com hardware.

@@ -1,0 +1,23 @@
+{
+  "name": "@ecogrid/web",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --configLoader native --host 127.0.0.1",
+    "build": "vite build --configLoader native"
+  },
+  "dependencies": {
+    "@ecogrid/contracts": "0.1.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "tailwindcss": "^4.0.0",
+    "vite": "^8.3.5"
+  }
+}
