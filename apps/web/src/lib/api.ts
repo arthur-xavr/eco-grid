@@ -8,6 +8,7 @@ export const api = {
   environments: (signal?: AbortSignal) => getJson<Environment[]>('/api/v1/environments', signal),
   summary: (query: URLSearchParams, signal?: AbortSignal) => getJson<Summary>('/api/v1/summary?' + query, signal),
   analytics: (query: URLSearchParams, signal?: AbortSignal) => getJson<AnalyticsResult>('/api/v1/analytics?' + query, signal),
+  readings: (query: URLSearchParams, signal?: AbortSignal) => getJson<Reading[]>('/api/v1/readings?' + query, signal),
   downloadCsv: (query: URLSearchParams) => {
     const url = '/api/v1/reports/consumption.csv?' + query;
     const anchor = document.createElement('a');
